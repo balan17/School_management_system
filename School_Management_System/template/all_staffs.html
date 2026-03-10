@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>All Staffs</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+        }
+        h1{
+        font-family: 'Times New Roman', Times, serif;
+            font-size: 45px;
+            font-weight: 600;
+        }
+        .table, .btn {
+            border-radius: 13px;
+        }
+        .table {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .table th, .table td {
+            border-radius: 0;
+        }
+        .custom-navbar {
+            background: linear-gradient(90deg, #0d1b2a, #1b263b, #415a77);
+            padding-top: 18px;
+            padding-bottom: 18px;
+        }
+        .page-content{
+    min-height: calc(100vh - 90px);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Table styling */
+.table{
+    border-radius:20px;
+    overflow:hidden;
+}
+        /* Brand style */
+        .navbar-brand {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        /* Menu items */
+        .nav-link {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: white !important;
+            padding-left: 22px !important;
+            padding-right: 22px !important;
+            transition: 0.3s;
+        }
+        /* Hover effect */
+        .nav-link:hover {
+            color: #ffd60a !important;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar shadow sticky-top">
+    <div class="container">
+
+        <a class="navbar-brand" href="#">🎓 My Portal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'admin_login' %}">Admin</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'staff_login' %}">Staff</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'student_login' %}">Student</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-danger fw-bold" href="{% url 'home' %}">
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="page-content">
+    <div class="text-center">
+        <h1 class="mb-5">All Staffs</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered table-dark">
+                <thead>
+                    <tr>
+                        <th>Staff Name</th>
+                        <th>Staff Salary</th>
+                        <th>Staff Work</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for staff in staffs %}
+                    <tr>
+                        <td>{{ staff.staff_name }}</td>
+                        <td>{{ staff.staff_salary }}</td>
+                        <td>{{ staff.staff_work }}</td>
+                        <td>
+                            <a href="{% url 'update_staff' staff.id %}" class="btn btn-warning btn-sm">Update</a>
+                            <form action="{% url 'delete_staff' staff.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Staff?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

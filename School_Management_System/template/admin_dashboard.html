@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<title>Admin Dashboard</title>
+
+<style>
+
+body{
+margin:0;
+overflow:hidden;
+}
+
+/* Main section */
+
+.main{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:120px;
+min-height:calc(100vh - 80px);
+width:100%;
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+}
+
+/* Attractive Buttons */
+
+.dashboard-btn{
+font-family:'Times New Roman', Times, serif;
+font-size:26px;
+font-weight:600;
+padding:18px 40px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#1e90ff,#00c6ff);
+color:white;
+text-decoration:none;
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
+transition:all 0.3s ease;
+}
+
+.dashboard-btn:hover{
+background:linear-gradient(135deg,#00ffd5,#0077ff);
+transform:translateY(-5px) scale(1.05);
+box-shadow:0 12px 25px rgba(0,0,0,0.6);
+color:white;
+}
+
+/* Navbar */
+
+.custom-navbar{
+background:linear-gradient(90deg,#0d1b2a,#1b263b,#415a77);
+padding-top:18px;
+padding-bottom:18px;
+}
+
+.navbar-brand{
+font-size:26px;
+font-weight:bold;
+letter-spacing:1px;
+}
+
+.nav-link{
+font-family:'Times New Roman', Times, serif;
+font-size:24px;
+font-weight:600;
+color:white !important;
+padding-left:22px !important;
+padding-right:22px !important;
+transition:0.3s;
+}
+
+.nav-link:hover{
+color:#ffd60a !important;
+transform:scale(1.05);
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar shadow sticky-top">
+<div class="container">
+
+<a class="navbar-brand" href="#">🎓 My Portal</a>
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbar">
+
+<ul class="navbar-nav ms-auto">
+
+<li class="nav-item">
+<a class="nav-link" href="{% url 'admin_dashboard' %}">Admin</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{% url 'staff_login' %}">Staff</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{% url 'student_login' %}">Student</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link text-danger fw-bold" href="{% url 'home' %}">
+Logout
+</a>
+</li>
+
+</ul>
+
+</div>
+</div>
+</nav>
+
+{% load static %}
+
+<div class="main" style="background-image:url('{% static 'girl.jpg' %}')">
+
+<a href="{% url 'create_staff' %}" class="dashboard-btn">
+Create Staff
+</a>
+
+<a href="{% url 'create_student' %}" class="dashboard-btn">
+Create Student
+</a>
+
+<a href="{% url 'all_staffs' %}" class="dashboard-btn">
+All Staffs
+</a>
+
+<a href="{% url 'all_students' %}" class="dashboard-btn">
+All Students
+</a>
+
+</div>
+
+</body>
+</html>

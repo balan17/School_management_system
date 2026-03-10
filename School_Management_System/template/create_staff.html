@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Create Staff/Student</title>
+    {% load static %}
+    <style>
+        body {
+    background-color: black;
+    color: white;
+    margin: 0;
+    height:100vh;
+    overflow:hidden;
+}
+        h1 {
+            color: red;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 45px;
+            font-weight: 600;
+        }
+
+        form {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: red;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        label {
+            color: white;
+            width: 110%;
+            height:50px;
+            max-width: 170px;
+            text-align: left;
+        }
+
+        .form-check-label {
+            margin-left: 5px;
+
+        }
+        .custom-navbar {
+            background: linear-gradient(90deg, #0d1b2a, #1b263b, #415a77);
+            padding-top: 18px;
+            padding-bottom: 18px;
+        }
+        /* Brand style */
+        .navbar-brand {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        /* Menu items */
+        .nav-link {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: white !important;
+            padding-left: 22px !important;
+            padding-right: 22px !important;
+            transition: 0.3s;
+        }
+        /* Hover effect */
+        .nav-link:hover {
+            color: #ffd60a !important;
+            transform: scale(1.05);
+        }
+       .stud-div{
+    min-height: calc(100vh - 80px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("{% static 'school.jpg' %}");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar shadow sticky-top">
+    <div class="container-fluid px-5">
+        <a class="navbar-brand" href="#">🎓 My Portal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'admin_dashboard' %}">Admin</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'staff_login' %}">Staff</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'student_login' %}">Student</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-danger fw-bold" href="{% url 'home' %}">
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="stud-div">
+    <div>
+    <h1 class="text-center mt-4 mb-3">Create Staff</h1>
+    <form method="post" enctype="multipart/form-data" class="row g-2">
+        {% csrf_token %}
+        <div class="col-md-6">
+    <label class="form-label">Username</label>
+    <input type="text" name="username" class="form-control">
+</div>
+
+<div class="col-md-6">
+    <label class="form-label">Password</label>
+    <input type="password" name="password" class="form-control">
+</div>
+
+<div class="col-md-6">
+    <label class="form-label">Staff Name</label>
+    <input type="text" name="staff_name" class="form-control">
+</div>
+
+<div class="col-md-6">
+    <label class="form-label">Staff Salary</label>
+    <input type="text" name="staff_salary" class="form-control">
+</div>
+
+<div class="col-md-6">
+    <label class="form-label">Staff Work</label>
+    <input type="text" name="staff_work" class="form-control">
+</div>
+
+<div class="col-md-6">
+    <label class="form-label">Upload Picture</label>
+    <input type="file" name="pic" class="form-control">
+</div>
+        <div class="col-12 text-center mt-2">
+    <input type="submit" value="Create" class="btn btn-primary px-4">
+</div>
+    </form>
+</div>
+    </div>
+</body>
+</html>
